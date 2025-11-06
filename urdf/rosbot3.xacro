@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  Model primitives.
+
+  Author: Gabryel Batista
+-->
+
+<robot name="rosbot3" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:include filename="$(find rosbot3_description)/urdf/rosbot3.xacro"/>
+  <xacro:include filename="$(find ros_commons)/urdf/gazebo.xacro"/>
+
+  <xacro:macro
+    name="add_controller"
+    params="
+      position
+    "
+  >
+    <xacro:differential_controller
+      name="wheels_${position}"
+      left_joint="joint_wheel_${position}_left"
+      right_joint="joint_wheel_${position}_right"
+      wheel_separation="${wheel_separation}"
+      wheel_diameter="${wheel_diameter}"
+    />
+  </xacro:macro>
+
+  <xacro:add_controller position="front"/>
+  <xacro:add_controller position="center"/>
+  <xacro:add_controller position="rear"/>
+
+  <xacro:remove_friction position="front"/>
+  <xacro:remove_friction position="rear"/>
+
+  <xacro:depth_camera name="camera_front"/>
+  <xacro:lidar_2d name="laser"/>
+</robot>

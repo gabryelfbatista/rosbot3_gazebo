@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  Description of the simulated environment.
+
+  Author: Helio Perroni Filho
+-->
+
+<sdf version="1.5">
+  <world name="default">
+    <include>
+      <uri>model://ground_plane</uri>
+      <pose>0.0 0.0 -0.001 0.0 0.0 0.0</pose>
+    </include>
+    <include>
+      <uri>model://sun</uri>
+    </include>
+    <include>
+      <uri>model://willowgarage</uri>
+      <pose>
+        -40.0 -20.0 0.0
+        0.0 0.0 0.0
+      </pose>
+    </include>
+    <gui>
+      <camera name="gzclient_camera">
+        <pose>9.0 -13.0 13.0 0.0 0.707 2.212</pose>
+      </camera>
+    </gui>
+  </world>
+</sdf>
