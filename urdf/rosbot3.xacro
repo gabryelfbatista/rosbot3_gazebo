@@ -14,6 +14,7 @@
     name="add_controller"
     params="
       position
+      publish_odom=false
     "
   >
     <xacro:differential_controller
@@ -22,11 +23,11 @@
       right_joint="joint_wheel_${position}_right"
       wheel_separation="${wheel_separation}"
       wheel_diameter="${wheel_diameter}"
+      publish_odom="${publish_odom}"
     />
   </xacro:macro>
 
   <xacro:add_controller position="front"/>
-  <xacro:add_controller position="center"/>
   <xacro:add_controller position="rear"/>
 
   <xacro:remove_friction position="front"/>
