@@ -10,28 +10,23 @@
   <xacro:include filename="$(find rosbot3_description)/urdf/rosbot3.xacro"/>
   <xacro:include filename="$(find ros_commons)/urdf/gazebo.xacro"/>
 
-  <xacro:macro
-    name="add_controller"
-    params="
-      position
-      publish_odom=false
-    "
-  >
-    <xacro:differential_controller
-      name="wheels_${position}"
-      left_joint="joint_wheel_${position}_left"
-      right_joint="joint_wheel_${position}_right"
-      wheel_separation="${wheel_separation}"
-      wheel_diameter="${wheel_diameter}"
-      publish_odom="${publish_odom}"
-    />
-  </xacro:macro>
-
-  <xacro:add_controller position="front"/>
-  <xacro:add_controller position="rear"/>
+  <xacro:skid_steer_controller
+    name="skid_steer_controller"
+    publish_odom="true"
+    
+    left_joint_0="joint_wheel_front_left"
+    right_joint_0="joint_wheel_front_right"
+    wheel_separation_0="${wheel_separation}"
+    wheel_diameter_0="${wheel_diameter}"
+    
+    left_joint_1="joint_wheel_rear_left"
+    right_joint_1="joint_wheel_rear_right"
+    wheel_separation_1="${wheel_separation}"
+    wheel_diameter_1="${wheel_diameter}"
+  />
 
   <xacro:remove_friction position="front"/>
-  <xacro:remove_friction position="rear"/>
+  <!-- <xacro:remove_friction position="rear"/> -->
 
   <xacro:depth_camera name="camera_front"/>
   <xacro:lidar_2d name="laser"/>
