@@ -18,4 +18,6 @@
   />
 
   <include file="$(find-pkg-share ros_commons)/launch/rqt_steering.launch"/>
+
+  <include file="$(find-pkg-share ros_commons)/launch/rviz_simulation.launch"/>
 </launch>
